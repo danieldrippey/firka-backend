@@ -3,6 +3,7 @@ const router = require('express').Router();
 const testController = require('./controllers/test-contoller');
 const registerController = require('./controllers/register-controller');
 const loginController = require('./controllers/login-controller');
+const wordsController = require('./controllers/words-controller');
 
 const checkFields = require('./services/field-validator');
 const validateHeaders = require('./services/validate-headers');
@@ -10,6 +11,7 @@ const validateHeaders = require('./services/validate-headers');
 const validate = [validateHeaders, checkFields];
 
 router.get('/', testController);
+router.get('/words', wordsController);
 
 router.post('/register', [
   check('username').isLength({ min: 1 }),
