@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `firka` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `firka`;
 -- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: firka
@@ -18,26 +20,22 @@
 --
 -- Table structure for table `players`
 --
-DROP Database IF EXISTS `firka`;
-
-CREATE Database `firka`;
-
-USE `firka`;
 
 DROP TABLE IF EXISTS `players`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `players` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `username` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `display_name` varchar(45) DEFAULT NULL,
-  `victories` int(11) GENERATED ALWAYS AS (0) VIRTUAL,
-  `avatar` varchar(255) DEFAULT 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png',
+  `avatar` longtext,
+  `victories` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  UNIQUE KEY `display_name_UNIQUE` (`display_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +44,7 @@ CREATE TABLE `players` (
 
 LOCK TABLES `players` WRITE;
 /*!40000 ALTER TABLE `players` DISABLE KEYS */;
-INSERT INTO `players` (`id`, `username`, `password`, `display_name`, `avatar`) VALUES (1,'DrDani','password','Daniel','www.example.com'),(3,'MárkKő','qwerty','Márk','www.example.com'),(4,'Pascal','jelszo','Mr Pasquale','www.placeholder.com'),(5,'agirónay','123456','BeerFighter','www.placeholder2.hu'),(6,'Barnibácsi','angular','Barni','www.example.com'),(12,'szipusalfonz','teknokol','Alfonzie','www.example.com');
+INSERT INTO `players` VALUES (1,'DrDani','password','Daniel','www.example.com',1),(3,'Mark','qwerty','Mark',NULL,2),(4,'Pascal','jelszo','Mr Pasquale','www.placeholder.com',3),(5,'agironay','123456','BeerFighter','www.placeholder2.hu',1000);
 /*!40000 ALTER TABLE `players` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -72,7 +70,7 @@ CREATE TABLE `words` (
 
 LOCK TABLES `words` WRITE;
 /*!40000 ALTER TABLE `words` DISABLE KEYS */;
-INSERT INTO `words` VALUES (1,'alma'),(4,'dinnye'),(6,'kiwi'),(5,'körte'),(11,'málna'),(2,'narancs'),(10,'őszibarack'),(9,'ribizli'),(7,'szilva'),(8,'szőlő');
+INSERT INTO `words` VALUES (1,'alma'),(4,'dinnye'),(6,'kiwi'),(5,'korte'),(11,'malna'),(2,'narancs'),(10,'oszibarack'),(9,'ribizli'),(7,'szilva'),(8,'szolo');
 /*!40000 ALTER TABLE `words` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -85,4 +83,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-07 19:04:50
+-- Dump completed on 2019-11-07 20:49:29
