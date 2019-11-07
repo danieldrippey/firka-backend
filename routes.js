@@ -5,6 +5,7 @@ const registerController = require('./controllers/register-controller');
 const loginController = require('./controllers/login-controller');
 const wordsController = require('./controllers/words-controller');
 const usersController = require('./controllers/users-controller');
+const increaseWin = require('./controllers/users-put-controller');
 
 const refreshController = require('./controllers/refresh-controller');
 const authenticate = require('./services/jwt-authenticator');
@@ -16,6 +17,8 @@ const validate = [validateHeaders, checkFields];
 router.get('/', testController);
 router.get('/words', wordsController);
 router.get('/users', usersController);
+
+router.put('/users/:id', increaseWin);
 
 router.post('/register', [
   check('username').isLength({ min: 1 }),
