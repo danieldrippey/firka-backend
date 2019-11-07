@@ -10,7 +10,7 @@ CREATE TABLE `players` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
-  `display_name` varchar(45) NOT NULL,
+  `display_name` varchar(45),
   `victories` int(11) GENERATED ALWAYS AS (0) VIRTUAL,
   `avatar` longtext,
   PRIMARY KEY (`id`),
