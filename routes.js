@@ -6,6 +6,8 @@ const loginController = require('./controllers/login-controller');
 const wordsController = require('./controllers/words-controller');
 const usersController = require('./controllers/users-controller');
 
+const refreshController = require('./controllers/refresh-controller');
+const authenticate = require('./services/jwt-authenticator');
 const checkFields = require('./services/field-validator');
 const validateHeaders = require('./services/validate-headers');
 
@@ -26,5 +28,7 @@ router.post('/login', [
   check('password').isLength({ min: 1 }),
   validate,
 ], loginController);
+
+router.post('/refresh', validateHeaders, authenticate, refreshController);
 
 module.exports = router;
