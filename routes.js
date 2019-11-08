@@ -12,7 +12,10 @@ const authenticate = require('./services/jwt-authenticator');
 const checkFields = require('./services/field-validator');
 const validateHeaders = require('./services/validate-headers');
 
+
 const validate = [validateHeaders, checkFields];
+
+let path = require("path");
 
 router.get('/', testController);
 router.get('/words', wordsController);
@@ -33,5 +36,22 @@ router.post('/login', [
 ], loginController);
 
 router.post('/refresh', validateHeaders, authenticate, refreshController);
+
+router.post('/upload', (req, res) => {
+  if (req.files === null) {
+    return res.status(400).json({ msg: 'no file was uploaded.' })
+  }
+
+  const file = req.files.file;
+
+  file.mv(path.join(__dirname, `../firka-frontend/public/avatars/${file.name}`), err => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send(err);
+    }
+
+    res.json({ fileName: file.name, filePath: `/avatars/${file.name}` });
+  })
+});
 
 module.exports = router;

@@ -4,6 +4,7 @@ require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
 const routes = require('./routes');
+const fileUpload = require('express-fileupload');
 
 const app = express();
 const port = process.env.PORT || 4000;
