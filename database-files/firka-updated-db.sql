@@ -44,7 +44,16 @@ CREATE TABLE `players` (
 
 LOCK TABLES `players` WRITE;
 /*!40000 ALTER TABLE `players` DISABLE KEYS */;
-INSERT INTO `players` VALUES (1,'DrDani','password','Daniel','www.example.com',1),(3,'Mark','qwerty','Mark',NULL,2),(4,'Pascal','jelszo','Mr Pasquale','www.placeholder.com',3),(5,'agironay','123456','BeerFighter','www.placeholder2.hu',1000);
+INSERT INTO `players` VALUES 
+(1,'DrDani','password','Daniel','www.example.com',1),
+(3,'Mark','qwerty','Mark',NULL,2),
+(4,'Pascal','12345','Mr Pasquale','/avatars/Pascal.png',3),
+(5,'Ricsi','12345','Ricsi','/avatars/Ricsi.png',800),
+(6,'Szabi','12345','Szabi','/avatars/Szabi.png',700),
+(7,'Ákos','12345','Ákos','/avatars/Akos.png',800),
+(8,'Ági','12345','Ági','/avatars/Agi.png',750),
+(9,'Dávid','12345','Dávid','/avatars/David.png',1000),
+(10,'Dani','12345','Dani','/avatars/Dani.png',990);
 /*!40000 ALTER TABLE `players` ENABLE KEYS */;
 UNLOCK TABLES;
 
