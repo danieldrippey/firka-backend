@@ -3,14 +3,19 @@
 const jwt = require('jsonwebtoken');
 const loginQuery = require('./login-query');
 const loginResponseQuery = require('./login-response-query');
+const bcrypt = require('bcrypt');
 
 async function loginService (username, password) {
   const secret = process.env.SECRET;
   try {
-    const foundUser = await loginQuery.findPlayer(username, password);
-    if (!foundUser.length) {
+    const foundPlayer = await loginQuery.findPlayer(username);
+    if (!foundPlayer.length) {
       return null;
     }
+    const match = await bcrypt.compare(password, foundPlayer[0].password);
+    if (!match) {
+      return null;
+    } 
     const token = jwt.sign({ username }, secret, {
       expiresIn: process.env.TOKEN_LIFE,
     });
