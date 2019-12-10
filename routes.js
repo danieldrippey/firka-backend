@@ -1,6 +1,5 @@
 const { check } = require('express-validator');
 const router = require('express').Router();
-const testController = require('./controllers/test-contoller');
 const registerController = require('./controllers/register-controller');
 const loginController = require('./controllers/login-controller');
 const wordsController = require('./controllers/words-controller');
@@ -17,7 +16,6 @@ const validate = [validateHeaders, checkFields];
 
 let path = require("path");
 
-router.get('/', testController);
 router.get('/words', wordsController);
 router.get('/users', usersController);
 
